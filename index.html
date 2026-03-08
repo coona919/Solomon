@@ -233,7 +233,7 @@
       z-index: 2;
       pointer-events: none;
       overflow: hidden;
-      opacity: 0.22;
+      opacity: 1;
       mix-blend-mode: normal;
     }
 
@@ -243,6 +243,17 @@
       height: 150px;
       display: block;
       object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .watermark-surface {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
@@ -389,7 +400,7 @@
       <div class="group">
         <label class="label" for="watermarkOpacity">浮水印透明度</label>
         <div class="range-row">
-          <input class="range" id="watermarkOpacity" type="range" min="5" max="60" value="16" />
+          <input class="range" id="watermarkOpacity" type="range" min="0" max="100" value="16" />
           <div class="range-value" id="watermarkOpacityValue">16%</div>
         </div>
       </div>
@@ -484,7 +495,7 @@
     const getPosition = () => (qs('input[name="position"]:checked')?.value || "left-bottom");
     const getWatermarkPattern = () => (qs('input[name="watermarkPattern"]:checked')?.value || "none");
     const getWatermarkColor = () => (watermarkColorInput.value || "#ffffff");
-    const getWatermarkOpacity = () => Math.max(0.05, Math.min(0.6, Number(watermarkOpacityInput.value) / 100 || 0.16));
+    const getWatermarkOpacity = () => Math.max(0, Math.min(1, Number(watermarkOpacityInput.value) / 100 || 0));
 
     let mainSrc = "";
     let mainObjectUrl = "";
@@ -523,6 +534,7 @@
       if (mainScaleValueNum < 1) {
         mainScaleValueNum = 1;
         mainScale.value = "100";
+    
       }
       const base = getBaseCoverSize();
       const scaledWidth = base.width * mainScaleValueNum;
@@ -723,21 +735,31 @@
       canvas.height = size;
       const ctx = canvas.getContext("2d");
       const luminance = getColorLuminance(color);
-      const fillAlpha = Math.min(0.98, opacity + (luminance >= 0.7 ? 0.5 : 0.64));
-      const outlineAlpha = luminance >= 0.7 ? 0.32 : 0.12;
+      const safeOpacity = Math.max(0, Math.min(1, opacity));
+      const fillAlpha = Math.max(0, Math.min(1, safeOpacity));
+      const patternAlpha = Math.max(0, Math.min(1, safeOpacity));
+      const outlineAlpha = safeOpacity > 0
+        ? (luminance >= 0.7 ? Math.min(0.5, safeOpacity + 0.18) : Math.min(0.24, safeOpacity + 0.08))
+        : 0;
+
       ctx.translate(size / 2, size / 2);
       ctx.rotate(angleDeg * Math.PI / 180);
-      ctx.shadowBlur = luminance >= 0.7 ? 10 : 0;
-      ctx.shadowColor = getContrastColor(color, luminance >= 0.7 ? 0.42 : 0.16);
-      drawTilePattern(ctx, pattern, color, opacity, size);
+      ctx.shadowBlur = safeOpacity > 0 && luminance >= 0.7 ? 10 : 0;
+      ctx.shadowColor = getContrastColor(color, safeOpacity > 0 ? (luminance >= 0.7 ? 0.42 : 0.16) : 0);
+      ctx.globalAlpha = 1;
+      drawTilePattern(ctx, pattern, color, patternAlpha, size);
       ctx.font = "700 22px serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.lineWidth = luminance >= 0.7 ? 1.8 : 1.2;
       ctx.strokeStyle = getContrastColor(color, outlineAlpha);
-      ctx.strokeText(text, 0, 0);
+      if (outlineAlpha > 0) {
+        ctx.strokeText(text, 0, 0);
+      }
       ctx.fillStyle = hexToRgba(color, fillAlpha);
-      ctx.fillText(text, 0, 0);
+      if (fillAlpha > 0) {
+        ctx.fillText(text, 0, 0);
+      }
       return canvas;
     }
 
@@ -755,37 +777,60 @@
       };
     }
 
-    function drawWatermarkPreview() {
-      byId("watermarkLayer")?.remove();
+    function getPreviewToExportScale(exportWidth, exportHeight) {
+      const previewWidth = Math.max(stage.clientWidth, 1);
+      const previewHeight = Math.max(stage.clientHeight, 1);
+      return {
+        x: exportWidth / previewWidth,
+        y: exportHeight / previewHeight
+      };
+    }
+
+    function renderWatermarkSurface(width, height) {
       const text = (watermarkTextInput.value || "").trim();
       const pattern = getWatermarkPattern();
       const watermarkColor = getWatermarkColor();
       const opacity = getWatermarkOpacity();
+      const surface = document.createElement("canvas");
+      surface.width = Math.max(1, Math.round(width));
+      surface.height = Math.max(1, Math.round(height));
+
+      if (!text || pattern === "none" || opacity === 0) {
+        return surface;
+      }
+
+      const ctx = surface.getContext("2d");
+      const layout = getWatermarkLayout(surface.width, surface.height);
+      const tileCanvas = createWatermarkTile(pattern, text, watermarkColor, opacity, layout.tileSize, layout.angleDeg);
+
+      for (let y = layout.startY; y < layout.endY; y += layout.stepY) {
+        for (let x = layout.startX; x < layout.endX; x += layout.stepX) {
+          ctx.drawImage(tileCanvas, x, y, layout.tileSize, layout.tileSize);
+        }
+      }
+
+      return surface;
+    }
+
+    function drawWatermarkPreview() {
+      byId("watermarkLayer")?.remove();
+      const opacity = getWatermarkOpacity();
       watermarkOpacityValue.textContent = Math.round(opacity * 100) + "%";
-      if (!text || pattern === "none") return;
+
+      const text = (watermarkTextInput.value || "").trim();
+      const pattern = getWatermarkPattern();
+      if (!text || pattern === "none" || opacity === 0) return;
 
       const layer = document.createElement("div");
       layer.id = "watermarkLayer";
       layer.className = "watermark-layer";
 
-      const w = stage.clientWidth || 1;
-      const h = stage.clientHeight || 1;
-      const layout = getWatermarkLayout(w, h);
-      const tileUrl = createWatermarkTile(pattern, text, watermarkColor, opacity, layout.tileSize, layout.angleDeg).toDataURL("image/png");
-
-      for (let y = layout.startY; y < layout.endY; y += layout.stepY) {
-        for (let x = layout.startX; x < layout.endX; x += layout.stepX) {
-          const item = document.createElement("img");
-          item.className = "watermark-item";
-          item.src = tileUrl;
-          item.alt = "";
-          item.style.left = x + "px";
-          item.style.top = y + "px";
-          item.style.width = layout.tileSize + "px";
-          item.style.height = layout.tileSize + "px";
-          layer.appendChild(item);
-        }
-      }
+      const surface = renderWatermarkSurface(stage.clientWidth || 1, stage.clientHeight || 1);
+      const img = document.createElement("img");
+      img.className = "watermark-surface";
+      img.alt = "";
+      img.src = surface.toDataURL("image/png");
+      layer.appendChild(img);
       stage.appendChild(layer);
     }
 
@@ -1053,16 +1098,10 @@
 
         const watermarkText = (watermarkTextInput.value || "").trim();
         const watermarkPattern = getWatermarkPattern();
-        const watermarkColor = getWatermarkColor();
         const watermarkOpacity = getWatermarkOpacity();
-        if (watermarkText && watermarkPattern !== "none") {
-          const layout = getWatermarkLayout(w, h);
-          const tileCanvas = createWatermarkTile(watermarkPattern, watermarkText, watermarkColor, watermarkOpacity, layout.tileSize, layout.angleDeg);
-          for (let py = layout.startY; py < layout.endY; py += layout.stepY) {
-            for (let px = layout.startX; px < layout.endX; px += layout.stepX) {
-              ctx.drawImage(tileCanvas, px, py, layout.tileSize, layout.tileSize);
-            }
-          }
+        if (watermarkText && watermarkPattern !== "none" && watermarkOpacity > 0) {
+          const previewSurface = renderWatermarkSurface(stage.clientWidth || 1, stage.clientHeight || 1);
+          ctx.drawImage(previewSurface, 0, 0, w, h);
         }
 
         const link = document.createElement("a");
@@ -1128,6 +1167,12 @@
         console.assert(getWatermarkPattern() === "solomon", "浮水印圖案應可正確讀取");
         console.assert(getWatermarkColor() === "#ffffff", "浮水印顏色應可正確讀取");
         console.assert(Math.round(getWatermarkOpacity() * 100) === 16, "浮水印透明度應可正確讀取");
+        console.assert(getComputedStyle(byId("watermarkLayer") || document.createElement("div")).opacity === "1" || byId("watermarkLayer") === null, "預覽浮水印容器不應再額外疊加透明度");
+        const previewLayout = getWatermarkLayout(300, 400);
+        console.assert(previewLayout.tileSize === 120, "預覽浮水印最小尺寸應正確");
+        const previewSurface = renderWatermarkSurface(300, 400);
+        console.assert(previewSurface.width === 300 && previewSurface.height === 400, "浮水印預覽畫布尺寸應與預覽一致");
+        console.assert(watermarkOpacityInput.min === "0" && watermarkOpacityInput.max === "100", "浮水印透明度範圍應為 0-100%");
         console.assert(getContrastColor("#ffffff", 0.5).includes("0, 0, 0"), "白色浮水印應取得深色對比描邊");
 
         testStatus.textContent = "inline tests passed";
@@ -1145,7 +1190,11 @@
     updateStageSize();
     loadOptionalTagImage();
     applyLayout();
-    runInlineTests();
+    // 確保浮水印圖案預設為「不使用」
+const defaultPattern = document.querySelector('input[name="watermarkPattern"][value="none"]');
+if (defaultPattern) defaultPattern.checked = true;
+
+runInlineTests();
   </script>
 </body>
 </html>
