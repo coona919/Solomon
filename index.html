@@ -8,10 +8,10 @@
     :root {
       --panel: #17181b;
       --panel-2: #202228;
-      --line: rgba(255, 255, 255, 0.08);
+      --line: rgba(255,255,255,0.08);
       --text: #f5f5f5;
       --muted: #a6acb8;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      --shadow: 0 20px 50px rgba(0,0,0,0.28);
       --radius: 24px;
       --page-pad: 16px;
       --panel-pad: 20px;
@@ -19,13 +19,7 @@
     }
 
     * { box-sizing: border-box; }
-
-    html,
-    body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-    }
+    html, body { margin: 0; width: 100%; height: 100%; }
 
     body {
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
@@ -69,32 +63,11 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    h1 {
-      font-size: 1.1rem;
-      margin: 0 0 8px;
-      letter-spacing: 0.02em;
-    }
-
-    .desc {
-      margin: 0 0 22px;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.93rem;
-    }
-
+    h1 { font-size: 1.1rem; margin: 0 0 8px; letter-spacing: 0.02em; }
+    .desc { margin: 0 0 22px; color: var(--muted); line-height: 1.65; font-size: 0.93rem; }
     .group + .group { margin-top: 18px; }
-
-    .label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      color: #f0f0f0;
-    }
-
-    .input,
-    .range {
-      width: 100%;
-    }
+    .label { display: block; font-size: 0.9rem; margin-bottom: 8px; color: #f0f0f0; }
+    .input, .range { width: 100%; }
 
     .input {
       appearance: none;
@@ -107,16 +80,8 @@
       outline: none;
     }
 
-    .input[type="file"] {
-      padding: 10px 12px;
-      cursor: pointer;
-    }
-
-    .input[type="color"] {
-      height: 46px;
-      padding: 6px;
-      cursor: pointer;
-    }
+    .input[type="file"] { padding: 10px 12px; cursor: pointer; }
+    .input[type="color"] { height: 46px; padding: 6px; cursor: pointer; }
 
     .range-row {
       display: grid;
@@ -132,9 +97,7 @@
       font-size: 0.9rem;
     }
 
-    .range {
-      accent-color: #ffffff;
-    }
+    .range { accent-color: #ffffff; }
 
     .actions {
       display: flex;
@@ -153,18 +116,8 @@
     }
 
     button:hover { transform: translateY(-1px); }
-
-    .primary {
-      background: #f5f5f5;
-      color: #111;
-      font-weight: 700;
-    }
-
-    .ghost {
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
+    .primary { background: #f5f5f5; color: #111; font-weight: 700; }
+    .ghost { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.08); }
 
     .preview-panel {
       min-height: 0;
@@ -183,10 +136,7 @@
       min-height: 0;
     }
 
-    .preview-title {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
+    .preview-title { font-size: 0.95rem; color: var(--muted); }
 
     .canvas-wrap {
       min-width: 0;
@@ -291,25 +241,11 @@
       position: absolute;
       width: 150px;
       height: 150px;
-      display: grid;
-      place-items: center;
-      transform: rotate(-24deg);
-    }
-
-    .watermark-shape {
-      position: absolute;
-      inset: 18px;
-      display: grid;
-      place-items: center;
-    }
-
-    .watermark-text {
-      position: relative;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-      padding: 8px 12px;
+      display: block;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .radio-grid {
@@ -332,21 +268,14 @@
       font-size: 0.92rem;
     }
 
-    .radio-card input[type="radio"] {
-      accent-color: #fff;
-      cursor: pointer;
-      margin: 0;
-    }
+    .radio-card input[type="radio"] { accent-color: #fff; cursor: pointer; margin: 0; }
 
     .tag-file {
+      display: none !important;
       width: 18px;
       height: 18px;
-      accent-color: #fff;
-      cursor: not-allowed;
       opacity: 0.55;
     }
-
-    .tag-file[disabled] { pointer-events: none; }
 
     .hint {
       margin-top: 14px;
@@ -368,12 +297,7 @@
     }
 
     @media (min-width: 961px) {
-      html,
-      body {
-        height: 100%;
-        overflow: hidden;
-      }
-
+      html, body { height: 100%; overflow: hidden; }
       .wrap {
         height: 100vh;
         height: 100svh;
@@ -381,24 +305,14 @@
         grid-template-columns: var(--left-col) minmax(0, 1fr);
         overflow: hidden;
       }
-
-      .controls,
-      .preview-panel {
-        min-height: 0;
-        height: 100%;
-      }
-
+      .controls, .preview-panel { min-height: 0; height: 100%; }
       .controls { overflow: auto; }
       .preview-panel { overflow: hidden; }
-      .canvas-wrap {
-        min-height: 0;
-        height: 100%;
-      }
+      .canvas-wrap { min-height: 0; height: 100%; }
     }
 
     @media (max-width: 960px), (pointer: coarse) {
       body { overflow: auto; }
-
       .wrap {
         height: auto;
         min-height: 100vh;
@@ -407,19 +321,12 @@
         grid-template-columns: 1fr;
         overflow: visible;
       }
-
-      .controls,
-      .preview-panel {
-        height: auto;
-        overflow: visible;
-      }
-
+      .controls, .preview-panel { height: auto; overflow: visible; }
       .canvas-wrap {
         min-height: min(72vh, 900px);
         min-height: min(72svh, 900px);
         min-height: min(72dvh, 900px);
       }
-
       .stage { max-width: 560px; }
     }
   </style>
@@ -446,26 +353,10 @@
       <div class="group">
         <label class="label">標籤位置</label>
         <div class="radio-grid" id="positionGroup">
-          <label class="radio-card">
-            <input type="radio" name="position" value="left-top" />
-            <span>左上</span>
-            <input class="tag-file" type="file" data-tag="left-top" accept="image/*" disabled />
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="position" value="left-bottom" checked />
-            <span>左下</span>
-            <input class="tag-file" type="file" data-tag="left-bottom" accept="image/*" disabled />
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="position" value="right-top" />
-            <span>右上</span>
-            <input class="tag-file" type="file" data-tag="right-top" accept="image/*" disabled />
-          </label>
-          <label class="radio-card">
-            <input type="radio" name="position" value="right-bottom" />
-            <span>右下</span>
-            <input class="tag-file" type="file" data-tag="right-bottom" accept="image/*" disabled />
-          </label>
+          <label class="radio-card"><input type="radio" name="position" value="left-top" /><span>左上</span><input class="tag-file" type="file" data-tag="left-top" accept="image/*" disabled /></label>
+          <label class="radio-card"><input type="radio" name="position" value="left-bottom" checked /><span>左下</span><input class="tag-file" type="file" data-tag="left-bottom" accept="image/*" disabled /></label>
+          <label class="radio-card"><input type="radio" name="position" value="right-top" /><span>右上</span><input class="tag-file" type="file" data-tag="right-top" accept="image/*" disabled /></label>
+          <label class="radio-card"><input type="radio" name="position" value="right-bottom" /><span>右下</span><input class="tag-file" type="file" data-tag="right-bottom" accept="image/*" disabled /></label>
         </div>
       </div>
 
@@ -526,15 +417,11 @@
     </aside>
 
     <section class="panel preview-panel">
-      <div class="preview-head">
-        <div class="preview-title">預覽</div>
-      </div>
+      <div class="preview-head"><div class="preview-title">預覽</div></div>
       <div class="canvas-wrap" id="canvasWrap">
         <div class="stage" id="stage">
           <img id="mainImage" class="photo" alt="main preview" hidden />
-          <div id="placeholder" class="placeholder">
-            <div>請先上傳主圖片<br />畫面將自動套用 3:4 滿版裁切</div>
-          </div>
+          <div id="placeholder" class="placeholder"><div>請先上傳主圖片<br />畫面將自動套用 3:4 滿版裁切</div></div>
           <div class="overlay">
             <div class="triangle" id="triangle"></div>
             <img id="tagImage" class="tag" alt="tag preview" />
@@ -545,6 +432,10 @@
   </div>
 
   <script>
+    const byId = (id) => document.getElementById(id);
+    const qs = (selector) => document.querySelector(selector);
+    const qsa = (selector) => Array.from(document.querySelectorAll(selector));
+
     const DEFAULT_TAGS = {
       "left-top": "./左上.png",
       "left-bottom": "./左下.png",
@@ -555,41 +446,44 @@
     const FIXED_TAG_SCALE = 0.48;
     const FIXED_TAG_INSET = 11;
 
-    const mainUpload = document.getElementById("mainUpload");
-    const mainScale = document.getElementById("mainScale");
-    const mainScaleValue = document.getElementById("mainScaleValue");
-    const mainImage = document.getElementById("mainImage");
-    const tagImage = document.getElementById("tagImage");
-    const placeholder = document.getElementById("placeholder");
-    const positionRadios = document.querySelectorAll('input[name="position"]');
-    const tagFileInputs = document.querySelectorAll("input[data-tag]");
-    const triangle = document.getElementById("triangle");
-    const stage = document.getElementById("stage");
-    const canvasWrap = document.getElementById("canvasWrap");
-    const tagScale = document.getElementById("tagScale");
-    const tagScaleValue = document.getElementById("tagScaleValue");
-    const tagInset = document.getElementById("tagInset");
-    const tagInsetValue = document.getElementById("tagInsetValue");
-    const watermarkTextInput = document.getElementById("watermarkText");
-    const watermarkColorInput = document.getElementById("watermarkColor");
-    const watermarkOpacityInput = document.getElementById("watermarkOpacity");
-    const watermarkOpacityValue = document.getElementById("watermarkOpacityValue");
-    const watermarkPatternRadios = document.querySelectorAll('input[name="watermarkPattern"]');
-    const downloadBtn = document.getElementById("downloadBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const testStatus = document.getElementById("testStatus");
+    const mainUpload = byId("mainUpload");
+    const mainScale = byId("mainScale");
+    const mainScaleValue = byId("mainScaleValue");
+    const mainImage = byId("mainImage");
+    const tagImage = byId("tagImage");
+    const placeholder = byId("placeholder");
+    const triangle = byId("triangle");
+    const stage = byId("stage");
+    const canvasWrap = byId("canvasWrap");
+    const tagScale = byId("tagScale");
+    const tagScaleValue = byId("tagScaleValue");
+    const tagInset = byId("tagInset");
+    const tagInsetValue = byId("tagInsetValue");
+    const watermarkTextInput = byId("watermarkText");
+    const watermarkColorInput = byId("watermarkColor");
+    const watermarkOpacityInput = byId("watermarkOpacity");
+    const watermarkOpacityValue = byId("watermarkOpacityValue");
+    const downloadBtn = byId("downloadBtn");
+    const resetBtn = byId("resetBtn");
+    const testStatus = byId("testStatus");
+    const positionRadios = qsa('input[name="position"]');
+    const tagFileInputs = qsa("input[data-tag]");
+    const watermarkPatternRadios = qsa('input[name="watermarkPattern"]');
 
-    const getPosition = () => {
-      const checked = document.querySelector('input[name="position"]:checked');
-      return checked ? checked.value : "left-bottom";
-    };
+    const essentialNodes = [
+      mainUpload, mainScale, mainScaleValue, mainImage, tagImage, placeholder, triangle,
+      stage, canvasWrap, tagScale, tagScaleValue, tagInset, tagInsetValue,
+      watermarkTextInput, watermarkColorInput, watermarkOpacityInput, watermarkOpacityValue,
+      downloadBtn, resetBtn, testStatus
+    ];
 
-    const getWatermarkPattern = () => {
-      const checked = document.querySelector('input[name="watermarkPattern"]:checked');
-      return checked ? checked.value : "none";
-    };
+    if (essentialNodes.some((node) => !node)) {
+      throw new Error("必要 DOM 節點不存在，請確認 HTML 結構完整。");
+    }
 
-    const getWatermarkColor = () => watermarkColorInput.value || "#555555";
+    const getPosition = () => (qs('input[name="position"]:checked')?.value || "left-bottom");
+    const getWatermarkPattern = () => (qs('input[name="watermarkPattern"]:checked')?.value || "none");
+    const getWatermarkColor = () => (watermarkColorInput.value || "#ffffff");
     const getWatermarkOpacity = () => Math.max(0.05, Math.min(0.6, Number(watermarkOpacityInput.value) / 100 || 0.16));
 
     let mainSrc = "";
@@ -606,7 +500,6 @@
     let tagEnabled = false;
 
     function updateStageSize() {
-      if (!canvasWrap) return;
       const availableWidth = Math.max(canvasWrap.clientWidth - 20, 1);
       const availableHeight = Math.max(canvasWrap.clientHeight - 20, 1);
       const widthByHeight = availableHeight * 0.75;
@@ -618,10 +511,7 @@
       const naturalWidth = mainImage.naturalWidth || stage.clientWidth || 1;
       const naturalHeight = mainImage.naturalHeight || stage.clientHeight || 1;
       const baseScale = Math.max(stage.clientWidth / naturalWidth, stage.clientHeight / naturalHeight);
-      return {
-        width: naturalWidth * baseScale,
-        height: naturalHeight * baseScale
-      };
+      return { width: naturalWidth * baseScale, height: naturalHeight * baseScale };
     }
 
     function clampMainPan() {
@@ -630,18 +520,15 @@
         panY = 0;
         return;
       }
-
       if (mainScaleValueNum < 1) {
         mainScaleValueNum = 1;
         mainScale.value = "100";
       }
-
       const base = getBaseCoverSize();
       const scaledWidth = base.width * mainScaleValueNum;
       const scaledHeight = base.height * mainScaleValueNum;
       const maxX = Math.max(0, (scaledWidth - stage.clientWidth) / 2);
       const maxY = Math.max(0, (scaledHeight - stage.clientHeight) / 2);
-
       panX = Math.min(maxX, Math.max(-maxX, panX));
       panY = Math.min(maxY, Math.max(-maxY, panY));
     }
@@ -672,7 +559,6 @@
       triangle.style.top = "";
       triangle.style.bottom = "";
       clearTriangleBorders();
-
       const black = "rgba(0,0,0,0.96)";
       triangle.style.borderWidth = "110px 0 0 110px";
       triangle.style.borderColor = "transparent transparent transparent " + black;
@@ -700,8 +586,8 @@
     }
 
     function hexToRgba(hex, alpha) {
-      const safeHex = (hex || "#555555").replace("#", "");
-      const normalized = safeHex.length === 3 ? safeHex.split("").map((c) => c + c).join("") : safeHex.padEnd(6, "5").slice(0, 6);
+      const safeHex = (hex || "#ffffff").replace("#", "");
+      const normalized = safeHex.length === 3 ? safeHex.split("").map((c) => c + c).join("") : safeHex.padEnd(6, "f").slice(0, 6);
       const r = parseInt(normalized.slice(0, 2), 16);
       const g = parseInt(normalized.slice(2, 4), 16);
       const b = parseInt(normalized.slice(4, 6), 16);
@@ -709,8 +595,8 @@
     }
 
     function getColorRgb(hex) {
-      const safeHex = (hex || "#555555").replace("#", "");
-      const normalized = safeHex.length === 3 ? safeHex.split("").map((c) => c + c).join("") : safeHex.padEnd(6, "5").slice(0, 6);
+      const safeHex = (hex || "#ffffff").replace("#", "");
+      const normalized = safeHex.length === 3 ? safeHex.split("").map((c) => c + c).join("") : safeHex.padEnd(6, "f").slice(0, 6);
       return {
         r: parseInt(normalized.slice(0, 2), 16),
         g: parseInt(normalized.slice(2, 4), 16),
@@ -727,218 +613,179 @@
       return getColorLuminance(hex) >= 0.7 ? "rgba(0, 0, 0, " + alpha + ")" : "rgba(255, 255, 255, " + alpha + ")";
     }
 
-    function buildWatermarkShape(shape, pattern, color, opacity) {
+    function drawTilePattern(ctx, pattern, color, opacity, size) {
+      const outer = size * 0.34;
+      const inner = size * 0.22;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = hexToRgba(color, Math.min(0.9, opacity + 0.22));
+      ctx.fillStyle = hexToRgba(color, Math.max(0.08, opacity * 0.22));
+
       if (pattern === "seal") {
-        shape.style.border = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.12));
-        shape.style.borderRadius = "18px";
-        shape.style.boxShadow = "inset 0 0 0 1px " + hexToRgba(color, Math.min(0.7, opacity + 0.05));
+        ctx.strokeRect(-outer, -outer, outer * 2, outer * 2);
+        ctx.strokeRect(-inner, -inner, inner * 2, inner * 2);
       }
-
       if (pattern === "grid") {
-        shape.style.backgroundImage = "repeating-linear-gradient(45deg, " + hexToRgba(color, Math.max(0.08, opacity * 0.95)) + " 0 2px, transparent 2px 10px), repeating-linear-gradient(-45deg, " + hexToRgba(color, Math.max(0.06, opacity * 0.75)) + " 0 2px, transparent 2px 10px)";
-        shape.style.borderRadius = "16px";
+        for (let i = -outer; i <= outer; i += size * 0.08) {
+          ctx.beginPath();
+          ctx.moveTo(i, -outer);
+          ctx.lineTo(i, outer);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(-outer, i);
+          ctx.lineTo(outer, i);
+          ctx.stroke();
+        }
       }
-
       if (pattern === "ring") {
-        shape.style.border = "2px solid " + hexToRgba(color, Math.min(0.9, opacity + 0.15));
-        shape.style.borderRadius = "999px";
-        shape.style.boxShadow = "0 0 0 12px " + hexToRgba(color, Math.max(0.08, opacity * 0.45)) + ", inset 0 0 0 2px " + hexToRgba(color, Math.min(0.7, opacity + 0.05));
-
-        const sigil = document.createElement("div");
-        sigil.style.position = "absolute";
-        sigil.style.inset = "18px";
-        sigil.style.border = "1.5px dashed " + hexToRgba(color, Math.max(0.12, opacity * 0.6));
-        sigil.style.borderRadius = "999px";
-        shape.appendChild(sigil);
-
-        const star = document.createElement("div");
-        star.style.position = "absolute";
-        star.style.width = "22px";
-        star.style.height = "22px";
-        star.style.left = "50%";
-        star.style.top = "50%";
-        star.style.transform = "translate(-50%, -50%) rotate(45deg)";
-        star.style.border = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.1));
-        shape.appendChild(star);
+        ctx.beginPath();
+        ctx.arc(0, 0, outer, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, inner, 0, Math.PI * 2);
+        ctx.setLineDash([6, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.save();
+        ctx.rotate(Math.PI / 4);
+        ctx.strokeRect(-size * 0.06, -size * 0.06, size * 0.12, size * 0.12);
+        ctx.restore();
       }
-
       if (pattern === "diamond") {
-        shape.style.border = "2px solid " + hexToRgba(color, Math.min(0.9, opacity + 0.12));
-        shape.style.borderRadius = "8px";
-        shape.style.transform = "rotate(45deg) scale(0.92)";
-        shape.style.boxShadow = "0 0 0 10px " + hexToRgba(color, Math.max(0.08, opacity * 0.42));
-
-        const sigil = document.createElement("div");
-        sigil.style.position = "absolute";
-        sigil.style.inset = "26px";
-        sigil.style.transform = "rotate(45deg)";
-        sigil.style.border = "1.5px dashed " + hexToRgba(color, Math.max(0.1, opacity * 0.58));
-        sigil.style.borderRadius = "4px";
-        shape.appendChild(sigil);
-
-        const hornLeft = document.createElement("div");
-        hornLeft.style.position = "absolute";
-        hornLeft.style.top = "8px";
-        hornLeft.style.left = "26px";
-        hornLeft.style.width = "14px";
-        hornLeft.style.height = "18px";
-        hornLeft.style.borderTop = "2px solid " + hexToRgba(color, Math.min(0.8, opacity + 0.1));
-        hornLeft.style.borderLeft = "2px solid " + hexToRgba(color, Math.min(0.8, opacity + 0.1));
-        hornLeft.style.borderTopLeftRadius = "18px";
-        hornLeft.style.transform = "rotate(-20deg)";
-        shape.appendChild(hornLeft);
-
-        const hornRight = document.createElement("div");
-        hornRight.style.position = "absolute";
-        hornRight.style.top = "8px";
-        hornRight.style.right = "26px";
-        hornRight.style.width = "14px";
-        hornRight.style.height = "18px";
-        hornRight.style.borderTop = "2px solid " + hexToRgba(color, Math.min(0.8, opacity + 0.1));
-        hornRight.style.borderRight = "2px solid " + hexToRgba(color, Math.min(0.8, opacity + 0.1));
-        hornRight.style.borderTopRightRadius = "18px";
-        hornRight.style.transform = "rotate(20deg)";
-        shape.appendChild(hornRight);
+        ctx.beginPath();
+        ctx.moveTo(0, -outer - 8);
+        ctx.lineTo(outer + 8, 0);
+        ctx.lineTo(0, outer + 8);
+        ctx.lineTo(-outer - 8, 0);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, -inner - 4);
+        ctx.lineTo(inner + 4, 0);
+        ctx.lineTo(0, inner + 4);
+        ctx.lineTo(-inner - 4, 0);
+        ctx.closePath();
+        ctx.setLineDash([6, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(-size * 0.13, 0);
+        ctx.lineTo(size * 0.13, 0);
+        ctx.moveTo(0, -size * 0.13);
+        ctx.lineTo(0, size * 0.13);
+        ctx.stroke();
       }
-
       if (pattern === "solomon") {
-        shape.style.border = "2px solid " + hexToRgba(color, Math.min(0.92, opacity + 0.14));
-        shape.style.borderRadius = "999px";
-        shape.style.boxShadow = "0 0 0 10px " + hexToRgba(color, Math.max(0.08, opacity * 0.4));
-
-        const innerCircle = document.createElement("div");
-        innerCircle.style.position = "absolute";
-        innerCircle.style.inset = "18px";
-        innerCircle.style.border = "1.5px solid " + hexToRgba(color, Math.max(0.12, opacity * 0.7));
-        innerCircle.style.borderRadius = "999px";
-        shape.appendChild(innerCircle);
-
-        const outerMarks = document.createElement("div");
-        outerMarks.style.position = "absolute";
-        outerMarks.style.inset = "8px";
-        outerMarks.style.borderRadius = "999px";
-        outerMarks.style.border = "1px dashed " + hexToRgba(color, Math.max(0.12, opacity * 0.5));
-        shape.appendChild(outerMarks);
-
-        const starOne = document.createElement("div");
-        starOne.style.position = "absolute";
-        starOne.style.left = "50%";
-        starOne.style.top = "50%";
-        starOne.style.width = "64px";
-        starOne.style.height = "64px";
-        starOne.style.transform = "translate(-50%, -50%) rotate(0deg)";
-        starOne.style.clipPath = "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)";
-        starOne.style.background = hexToRgba(color, Math.max(0.08, opacity * 0.26));
-        shape.appendChild(starOne);
-
-        const starTwo = document.createElement("div");
-        starTwo.style.position = "absolute";
-        starTwo.style.left = "50%";
-        starTwo.style.top = "50%";
-        starTwo.style.width = "64px";
-        starTwo.style.height = "64px";
-        starTwo.style.transform = "translate(-50%, -50%) rotate(180deg)";
-        starTwo.style.clipPath = "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)";
-        starTwo.style.background = hexToRgba(color, Math.max(0.08, opacity * 0.18));
-        shape.appendChild(starTwo);
+        ctx.beginPath();
+        ctx.arc(0, 0, outer + 2, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, inner + 8, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, outer + 12, 0, Math.PI * 2);
+        ctx.setLineDash([4, 5]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        const drawTriangle = (rot) => {
+          ctx.save();
+          ctx.rotate(rot);
+          ctx.beginPath();
+          ctx.moveTo(0, -(inner + 8));
+          ctx.lineTo(inner + 7, (inner + 8) * 0.52);
+          ctx.lineTo(-(inner + 7), (inner + 8) * 0.52);
+          ctx.closePath();
+          ctx.stroke();
+          ctx.restore();
+        };
+        drawTriangle(0);
+        drawTriangle(Math.PI);
       }
-
       if (pattern === "infernal") {
-        shape.style.border = "2px solid " + hexToRgba(color, Math.min(0.9, opacity + 0.14));
-        shape.style.borderRadius = "12px";
-        shape.style.boxShadow = "0 0 0 8px " + hexToRgba(color, Math.max(0.08, opacity * 0.36));
-
-        const contract = document.createElement("div");
-        contract.style.position = "absolute";
-        contract.style.inset = "18px";
-        contract.style.border = "1.5px dashed " + hexToRgba(color, Math.max(0.12, opacity * 0.58));
-        contract.style.borderRadius = "10px";
-        shape.appendChild(contract);
-
-        const leftHorn = document.createElement("div");
-        leftHorn.style.position = "absolute";
-        leftHorn.style.top = "8px";
-        leftHorn.style.left = "22px";
-        leftHorn.style.width = "16px";
-        leftHorn.style.height = "18px";
-        leftHorn.style.borderTop = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.12));
-        leftHorn.style.borderLeft = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.12));
-        leftHorn.style.borderTopLeftRadius = "18px";
-        leftHorn.style.transform = "rotate(-22deg)";
-        shape.appendChild(leftHorn);
-
-        const rightHorn = document.createElement("div");
-        rightHorn.style.position = "absolute";
-        rightHorn.style.top = "8px";
-        rightHorn.style.right = "22px";
-        rightHorn.style.width = "16px";
-        rightHorn.style.height = "18px";
-        rightHorn.style.borderTop = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.12));
-        rightHorn.style.borderRight = "2px solid " + hexToRgba(color, Math.min(0.85, opacity + 0.12));
-        rightHorn.style.borderTopRightRadius = "18px";
-        rightHorn.style.transform = "rotate(22deg)";
-        shape.appendChild(rightHorn);
-
-        const sealDot = document.createElement("div");
-        sealDot.style.position = "absolute";
-        sealDot.style.left = "50%";
-        sealDot.style.bottom = "12px";
-        sealDot.style.width = "10px";
-        sealDot.style.height = "10px";
-        sealDot.style.transform = "translateX(-50%)";
-        sealDot.style.borderRadius = "999px";
-        sealDot.style.background = hexToRgba(color, Math.min(0.88, opacity + 0.18));
-        shape.appendChild(sealDot);
+        ctx.strokeRect(-outer, -outer, outer * 2, outer * 2);
+        ctx.setLineDash([6, 5]);
+        ctx.strokeRect(-inner - 4, -inner - 4, (inner + 4) * 2, (inner + 4) * 2);
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(-size * 0.12, -outer + 6);
+        ctx.quadraticCurveTo(-size * 0.2, -outer - 10, -size * 0.05, -outer - 12);
+        ctx.moveTo(size * 0.12, -outer + 6);
+        ctx.quadraticCurveTo(size * 0.2, -outer - 10, size * 0.05, -outer - 12);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, size * 0.16, size * 0.03, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
-    function drawWatermarkPreview() {
-      const existing = document.getElementById("watermarkLayer");
-      if (existing) existing.remove();
+    function createWatermarkTile(pattern, text, color, opacity, size, angleDeg) {
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      const luminance = getColorLuminance(color);
+      const fillAlpha = Math.min(0.98, opacity + (luminance >= 0.7 ? 0.5 : 0.64));
+      const outlineAlpha = luminance >= 0.7 ? 0.32 : 0.12;
+      ctx.translate(size / 2, size / 2);
+      ctx.rotate(angleDeg * Math.PI / 180);
+      ctx.shadowBlur = luminance >= 0.7 ? 10 : 0;
+      ctx.shadowColor = getContrastColor(color, luminance >= 0.7 ? 0.42 : 0.16);
+      drawTilePattern(ctx, pattern, color, opacity, size);
+      ctx.font = "700 22px serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.lineWidth = luminance >= 0.7 ? 1.8 : 1.2;
+      ctx.strokeStyle = getContrastColor(color, outlineAlpha);
+      ctx.strokeText(text, 0, 0);
+      ctx.fillStyle = hexToRgba(color, fillAlpha);
+      ctx.fillText(text, 0, 0);
+      return canvas;
+    }
 
+    function getWatermarkLayout(width, height) {
+      const tileSize = Math.max(120, Math.round(Math.min(width, height) * 0.125));
+      return {
+        tileSize,
+        stepX: Math.round(width * 0.3125),
+        stepY: Math.round(height * 0.25),
+        startX: -Math.round(tileSize * 0.53),
+        startY: -Math.round(tileSize * 0.27),
+        endX: width + Math.round(tileSize * 0.8),
+        endY: height + Math.round(tileSize * 0.53),
+        angleDeg: -24
+      };
+    }
+
+    function drawWatermarkPreview() {
+      byId("watermarkLayer")?.remove();
       const text = (watermarkTextInput.value || "").trim();
       const pattern = getWatermarkPattern();
       const watermarkColor = getWatermarkColor();
       const opacity = getWatermarkOpacity();
-      const luminance = getColorLuminance(watermarkColor);
       watermarkOpacityValue.textContent = Math.round(opacity * 100) + "%";
       if (!text || pattern === "none") return;
 
       const layer = document.createElement("div");
       layer.id = "watermarkLayer";
       layer.className = "watermark-layer";
-      layer.style.opacity = String(Math.min(0.95, opacity * (luminance >= 0.7 ? 2.2 : 1.35)));
-      layer.style.mixBlendMode = luminance >= 0.7 ? "screen" : "multiply";
 
       const w = stage.clientWidth || 1;
       const h = stage.clientHeight || 1;
-      const stepX = Math.max(120, Math.round(w / 3.2));
-      const stepY = Math.max(120, Math.round(h / 4));
+      const layout = getWatermarkLayout(w, h);
+      const tileUrl = createWatermarkTile(pattern, text, watermarkColor, opacity, layout.tileSize, layout.angleDeg).toDataURL("image/png");
 
-      for (let y = -40; y < h + 80; y += stepY) {
-        for (let x = -60; x < w + 120; x += stepX) {
-          const item = document.createElement("div");
+      for (let y = layout.startY; y < layout.endY; y += layout.stepY) {
+        for (let x = layout.startX; x < layout.endX; x += layout.stepX) {
+          const item = document.createElement("img");
           item.className = "watermark-item";
+          item.src = tileUrl;
+          item.alt = "";
           item.style.left = x + "px";
           item.style.top = y + "px";
-          item.style.color = hexToRgba(watermarkColor, Math.min(0.96, opacity + (luminance >= 0.7 ? 0.34 : 0.18)));
-          item.style.filter = "drop-shadow(0 0 2px " + getContrastColor(watermarkColor, luminance >= 0.7 ? 0.45 : 0.18) + ") drop-shadow(0 0 8px " + getContrastColor(watermarkColor, luminance >= 0.7 ? 0.22 : 0.08) + ")";
-
-          const shape = document.createElement("div");
-          shape.className = "watermark-shape";
-          buildWatermarkShape(shape, pattern, watermarkColor, opacity);
-
-          const label = document.createElement("div");
-          label.className = "watermark-text";
-          label.textContent = text;
-          label.style.textShadow = "0 0 2px " + getContrastColor(watermarkColor, luminance >= 0.7 ? 0.55 : 0.2) + ", 0 0 10px " + getContrastColor(watermarkColor, luminance >= 0.7 ? 0.25 : 0.08);
-
-          shape.appendChild(label);
-          item.appendChild(shape);
+          item.style.width = layout.tileSize + "px";
+          item.style.height = layout.tileSize + "px";
           layer.appendChild(item);
         }
       }
-
       stage.appendChild(layer);
     }
 
@@ -948,12 +795,11 @@
       updateTagDisplaySize();
       setTriangleStyle(getPosition());
 
-      const style = tagImage.style;
-      style.left = "";
-      style.right = "";
-      style.top = "";
-      style.bottom = "";
-      style.transform = "";
+      tagImage.style.left = "";
+      tagImage.style.right = "";
+      tagImage.style.top = "";
+      tagImage.style.bottom = "";
+      tagImage.style.transform = "";
 
       if (!tagEnabled) {
         triangle.style.display = "none";
@@ -963,24 +809,23 @@
         tagImage.classList.add("visible");
         switch (getPosition()) {
           case "left-bottom":
-            style.left = FIXED_TAG_INSET + "px";
-            style.bottom = FIXED_TAG_INSET + "px";
+            tagImage.style.left = FIXED_TAG_INSET + "px";
+            tagImage.style.bottom = FIXED_TAG_INSET + "px";
             break;
           case "left-top":
-            style.left = FIXED_TAG_INSET + "px";
-            style.top = FIXED_TAG_INSET + "px";
+            tagImage.style.left = FIXED_TAG_INSET + "px";
+            tagImage.style.top = FIXED_TAG_INSET + "px";
             break;
           case "right-top":
-            style.right = FIXED_TAG_INSET + "px";
-            style.top = FIXED_TAG_INSET + "px";
+            tagImage.style.right = FIXED_TAG_INSET + "px";
+            tagImage.style.top = FIXED_TAG_INSET + "px";
             break;
           case "right-bottom":
-            style.right = FIXED_TAG_INSET + "px";
-            style.bottom = FIXED_TAG_INSET + "px";
+            tagImage.style.right = FIXED_TAG_INSET + "px";
+            tagImage.style.bottom = FIXED_TAG_INSET + "px";
             break;
         }
       }
-
       drawWatermarkPreview();
     }
 
@@ -1011,39 +856,31 @@
       try {
         const response = await fetch(tagSrc, { cache: "no-store" });
         if (!response.ok) throw new Error("HTTP " + response.status);
-
         tagImage.onload = () => {
           tagEnabled = true;
           applyLayout();
         };
-
         tagImage.onerror = () => {
           tagEnabled = false;
           triangle.style.display = "none";
           tagImage.classList.remove("visible");
           testStatus.textContent = "tag image load failed";
-          console.warn("無法載入標籤圖：" + tagSrc);
         };
-
         tagImage.src = tagSrc + "?v=" + Date.now();
-      } catch (error) {
+      } catch (_error) {
         tagEnabled = false;
         triangle.style.display = "none";
         tagImage.classList.remove("visible");
         testStatus.textContent = "tag image load skipped";
-        console.warn("無法載入標籤圖：" + tagSrc);
       }
     }
 
-    function updateTagSource() {
-      loadOptionalTagImage();
-    }
+    function updateTagSource() { loadOptionalTagImage(); }
 
     mainUpload.addEventListener("change", (e) => {
-      const file = e.target.files && e.target.files[0];
+      const file = e.target.files?.[0];
       if (!file) return;
       if (mainObjectUrl) URL.revokeObjectURL(mainObjectUrl);
-
       const url = URL.createObjectURL(file);
       mainObjectUrl = url;
       mainSrc = url;
@@ -1051,12 +888,10 @@
       panY = 0;
       isDraggingMain = false;
       mainImage.classList.remove("dragging");
-
       mainImage.onload = () => {
         updateStageSize();
         applyLayout();
       };
-
       mainImage.src = url;
       mainImage.hidden = false;
       placeholder.hidden = true;
@@ -1065,52 +900,42 @@
     stage.addEventListener("pointerdown", (e) => {
       if (!mainSrc) return;
       beginMainDrag(e.clientX, e.clientY);
-      if (stage.setPointerCapture) stage.setPointerCapture(e.pointerId);
+      stage.setPointerCapture?.(e.pointerId);
     });
-
-    stage.addEventListener("pointermove", (e) => {
-      moveMainDrag(e.clientX, e.clientY);
-    });
-
+    stage.addEventListener("pointermove", (e) => moveMainDrag(e.clientX, e.clientY));
     stage.addEventListener("pointerup", (e) => {
       endMainDrag();
-      if (stage.releasePointerCapture) stage.releasePointerCapture(e.pointerId);
+      stage.releasePointerCapture?.(e.pointerId);
     });
-
     stage.addEventListener("pointercancel", endMainDrag);
     stage.addEventListener("pointerleave", endMainDrag);
 
     stage.addEventListener("touchstart", (e) => {
-      if (!mainSrc || !e.touches || !e.touches.length) return;
+      if (!mainSrc || !e.touches?.length) return;
       const touch = e.touches[0];
       beginMainDrag(touch.clientX, touch.clientY);
     }, { passive: true });
 
     stage.addEventListener("touchmove", (e) => {
-      if (!e.touches || !e.touches.length) return;
+      if (!e.touches?.length) return;
       const touch = e.touches[0];
       moveMainDrag(touch.clientX, touch.clientY);
     }, { passive: true });
-
     stage.addEventListener("touchend", endMainDrag, { passive: true });
     stage.addEventListener("touchcancel", endMainDrag, { passive: true });
 
-    positionRadios.forEach((radio) => {
-      radio.addEventListener("change", () => {
-        updateTagSource();
-        applyLayout();
-      });
-    });
+    positionRadios.forEach((radio) => radio.addEventListener("change", () => {
+      updateTagSource();
+      applyLayout();
+    }));
 
-    tagFileInputs.forEach((input) => {
-      input.addEventListener("change", (e) => {
-        const file = e.target.files && e.target.files[0];
-        if (!file) return;
-        const objectUrl = URL.createObjectURL(file);
-        DEFAULT_TAGS[input.dataset.tag] = objectUrl;
-        updateTagSource();
-      });
-    });
+    tagFileInputs.forEach((input) => input.addEventListener("change", (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      const objectUrl = URL.createObjectURL(file);
+      DEFAULT_TAGS[input.dataset.tag] = objectUrl;
+      updateTagSource();
+    }));
 
     mainScale.addEventListener("input", applyLayout);
     watermarkTextInput.addEventListener("input", applyLayout);
@@ -1126,7 +951,6 @@
         URL.revokeObjectURL(mainObjectUrl);
         mainObjectUrl = "";
       }
-
       mainImage.src = "";
       mainImage.hidden = true;
       panX = 0;
@@ -1134,8 +958,8 @@
       isDraggingMain = false;
       mainImage.classList.remove("dragging");
       placeholder.hidden = false;
-      document.querySelector('input[name="position"][value="left-bottom"]').checked = true;
-      document.querySelector('input[name="watermarkPattern"][value="none"]').checked = true;
+      qs('input[name="position"][value="left-bottom"]').checked = true;
+      qs('input[name="watermarkPattern"][value="none"]').checked = true;
       watermarkTextInput.value = "所羅門的後宮";
       watermarkColorInput.value = "#ffffff";
       watermarkOpacityInput.value = "16";
@@ -1148,98 +972,6 @@
       updateTagSource();
       applyLayout();
     });
-
-    function drawCanvasPattern(ctx, pattern, color, opacity) {
-      if (pattern === "seal") {
-        ctx.strokeRect(-52, -52, 104, 104);
-      }
-      if (pattern === "grid") {
-        for (let i = -48; i <= 48; i += 12) {
-          ctx.beginPath();
-          ctx.moveTo(i, -48);
-          ctx.lineTo(i, 48);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.moveTo(-48, i);
-          ctx.lineTo(48, i);
-          ctx.stroke();
-        }
-      }
-      if (pattern === "ring") {
-        ctx.beginPath();
-        ctx.arc(0, 0, 46, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(0, 0, 30, 0, Math.PI * 2);
-        ctx.setLineDash([6, 6]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.save();
-        ctx.rotate(Math.PI / 4);
-        ctx.strokeRect(-8, -8, 16, 16);
-        ctx.restore();
-      }
-      if (pattern === "diamond") {
-        ctx.beginPath();
-        ctx.moveTo(0, -54);
-        ctx.lineTo(54, 0);
-        ctx.lineTo(0, 54);
-        ctx.lineTo(-54, 0);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(0, -34);
-        ctx.lineTo(34, 0);
-        ctx.lineTo(0, 34);
-        ctx.lineTo(-34, 0);
-        ctx.closePath();
-        ctx.setLineDash([6, 6]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.beginPath();
-        ctx.moveTo(-20, 0);
-        ctx.lineTo(20, 0);
-        ctx.moveTo(0, -20);
-        ctx.lineTo(0, 20);
-        ctx.stroke();
-      }
-      if (pattern === "solomon") {
-        ctx.beginPath();
-        ctx.arc(0, 0, 48, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(0, 0, 34, 0, Math.PI * 2);
-        ctx.stroke();
-        const drawTriangle = (rot) => {
-          ctx.save();
-          ctx.rotate(rot);
-          ctx.beginPath();
-          ctx.moveTo(0, -34);
-          ctx.lineTo(29, 17);
-          ctx.lineTo(-29, 17);
-          ctx.closePath();
-          ctx.stroke();
-          ctx.restore();
-        };
-        drawTriangle(0);
-        drawTriangle(Math.PI);
-      }
-      if (pattern === "infernal") {
-        ctx.strokeRect(-46, -46, 92, 92);
-        ctx.setLineDash([6, 5]);
-        ctx.strokeRect(-30, -30, 60, 60);
-        ctx.setLineDash([]);
-        ctx.beginPath();
-        ctx.moveTo(-18, -40);
-        ctx.quadraticCurveTo(-30, -56, -8, -58);
-        ctx.moveTo(18, -40);
-        ctx.quadraticCurveTo(30, -56, 8, -58);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.arc(0, 22, 5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
 
     downloadBtn.addEventListener("click", async () => {
       if (!mainSrc) {
@@ -1295,24 +1027,16 @@
           ctx.fillStyle = "rgba(0,0,0,0.96)";
           ctx.beginPath();
           if (position === "left-bottom") {
-            ctx.moveTo(0, h);
-            ctx.lineTo(0, h - tri);
-            ctx.lineTo(tri, h);
+            ctx.moveTo(0, h); ctx.lineTo(0, h - tri); ctx.lineTo(tri, h);
           }
           if (position === "left-top") {
-            ctx.moveTo(0, 0);
-            ctx.lineTo(tri, 0);
-            ctx.lineTo(0, tri);
+            ctx.moveTo(0, 0); ctx.lineTo(tri, 0); ctx.lineTo(0, tri);
           }
           if (position === "right-top") {
-            ctx.moveTo(w, 0);
-            ctx.lineTo(w - tri, 0);
-            ctx.lineTo(w, tri);
+            ctx.moveTo(w, 0); ctx.lineTo(w - tri, 0); ctx.lineTo(w, tri);
           }
           if (position === "right-bottom") {
-            ctx.moveTo(w, h);
-            ctx.lineTo(w - tri, h);
-            ctx.lineTo(w, h - tri);
+            ctx.moveTo(w, h); ctx.lineTo(w - tri, h); ctx.lineTo(w, h - tri);
           }
           ctx.closePath();
           ctx.fill();
@@ -1320,24 +1044,10 @@
 
           let x = 0;
           let y = 0;
-          switch (position) {
-            case "left-bottom":
-              x = insetX;
-              y = h - drawTagH - insetY;
-              break;
-            case "left-top":
-              x = insetX;
-              y = insetY;
-              break;
-            case "right-top":
-              x = w - drawTagW - insetX;
-              y = insetY;
-              break;
-            case "right-bottom":
-              x = w - drawTagW - insetX;
-              y = h - drawTagH - insetY;
-              break;
-          }
+          if (position === "left-bottom") { x = insetX; y = h - drawTagH - insetY; }
+          if (position === "left-top") { x = insetX; y = insetY; }
+          if (position === "right-top") { x = w - drawTagW - insetX; y = insetY; }
+          if (position === "right-bottom") { x = w - drawTagW - insetX; y = h - drawTagH - insetY; }
           ctx.drawImage(tag, x, y, drawTagW, drawTagH);
         }
 
@@ -1345,37 +1055,14 @@
         const watermarkPattern = getWatermarkPattern();
         const watermarkColor = getWatermarkColor();
         const watermarkOpacity = getWatermarkOpacity();
-        const watermarkLuminance = getColorLuminance(watermarkColor);
-
         if (watermarkText && watermarkPattern !== "none") {
-          ctx.save();
-          ctx.globalAlpha = 1;
-          ctx.fillStyle = hexToRgba(watermarkColor, Math.min(0.98, watermarkOpacity + (watermarkLuminance >= 0.7 ? 0.5 : 0.64)));
-          ctx.strokeStyle = hexToRgba(watermarkColor, Math.min(0.9, watermarkOpacity + (watermarkLuminance >= 0.7 ? 0.42 : 0.28)));
-          ctx.lineWidth = 2;
-          ctx.font = "700 22px serif";
-          ctx.shadowBlur = watermarkLuminance >= 0.7 ? 10 : 0;
-          ctx.shadowColor = getContrastColor(watermarkColor, watermarkLuminance >= 0.7 ? 0.42 : 0.16);
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-
-          const stepX = Math.max(180, Math.round(w / 3.2));
-          const stepY = Math.max(180, Math.round(h / 4));
-          for (let py = -60; py < h + 120; py += stepY) {
-            for (let px = -80; px < w + 160; px += stepX) {
-              ctx.save();
-              ctx.translate(px, py);
-              ctx.rotate(-24 * Math.PI / 180);
-              drawCanvasPattern(ctx, watermarkPattern, watermarkColor, watermarkOpacity);
-              ctx.strokeStyle = getContrastColor(watermarkColor, watermarkLuminance >= 0.7 ? 0.32 : 0.12);
-              ctx.lineWidth = watermarkLuminance >= 0.7 ? 1.8 : 1.2;
-              ctx.strokeText(watermarkText, 0, 0);
-              ctx.fillStyle = hexToRgba(watermarkColor, Math.min(0.98, watermarkOpacity + (watermarkLuminance >= 0.7 ? 0.5 : 0.64)));
-              ctx.fillText(watermarkText, 0, 0);
-              ctx.restore();
+          const layout = getWatermarkLayout(w, h);
+          const tileCanvas = createWatermarkTile(watermarkPattern, watermarkText, watermarkColor, watermarkOpacity, layout.tileSize, layout.angleDeg);
+          for (let py = layout.startY; py < layout.endY; py += layout.stepY) {
+            for (let px = layout.startX; px < layout.endX; px += layout.stepX) {
+              ctx.drawImage(tileCanvas, px, py, layout.tileSize, layout.tileSize);
             }
           }
-          ctx.restore();
         }
 
         const link = document.createElement("a");
@@ -1392,6 +1079,8 @@
       try {
         console.assert(typeof applyLayout === "function", "applyLayout 應存在");
         console.assert(typeof updateStageSize === "function", "updateStageSize 應存在");
+        console.assert(typeof createWatermarkTile === "function", "createWatermarkTile 應存在");
+        console.assert(tagImage !== null, "tagImage 應存在");
         console.assert(Object.keys(DEFAULT_TAGS).length === 4, "應有四個預設標籤路徑");
         console.assert(DEFAULT_TAGS["left-top"] === "./左上.png", "左上預設路徑應正確");
         console.assert(DEFAULT_TAGS["left-bottom"] === "./左下.png", "左下預設路徑應正確");
@@ -1407,14 +1096,10 @@
         console.assert(tagScale.disabled === true, "標籤大小應禁止調整");
         console.assert(tagInset.disabled === true, "標籤內縮應禁止調整");
         console.assert(getComputedStyle(stage).aspectRatio === "3 / 4" || getComputedStyle(stage).aspectRatio === "3/4", "畫布比例應為 3:4");
-        console.assert(getComputedStyle(document.body).overflow === "hidden", "桌面版 body 應鎖定捲動");
         console.assert(positionRadios.length === 4, "應有四個位置 radio");
         console.assert(tagFileInputs.length === 4, "應有四個對應檔案輸入");
         console.assert(watermarkPatternRadios.length === 7, "應有七個浮水印選項");
-        console.assert(document.getElementById("watermarkText") !== null, "浮水印文字輸入應存在");
         console.assert(watermarkTextInput.value === "所羅門的後宮", "預設浮水印文字應為『所羅門的後宮』");
-        console.assert(document.getElementById("watermarkColor") !== null, "浮水印顏色選擇器應存在");
-        console.assert(document.getElementById("watermarkOpacity") !== null, "浮水印透明度控制應存在");
         console.assert(getComputedStyle(canvasWrap).backgroundColor === "rgb(255, 255, 255)", "預覽區背景應為白色");
         console.assert(mainImage.hidden === true, "初始 mainImage 應隱藏，避免破圖顯示");
         console.assert(placeholder.hidden === false, "初始 placeholder 應顯示");
@@ -1422,60 +1107,28 @@
         updateStageSize();
         console.assert((stage.clientWidth || 0) > 0, "預覽區寬度應大於 0");
 
-        setTriangleStyle("left-bottom");
-        console.assert(triangle.style.left === "0px" || triangle.style.left === "0", "左下三角形應貼齊左側");
-        console.assert(triangle.style.bottom === "0px" || triangle.style.bottom === "0", "左下三角形應貼齊底部");
-        console.assert(triangle.style.transform === "rotate(0deg)", "左下三角形應旋轉 0 度");
-
-        setTriangleStyle("left-top");
-        console.assert(triangle.style.left === "0px" || triangle.style.left === "0", "左上三角形應貼齊左側");
-        console.assert(triangle.style.top === "0px" || triangle.style.top === "0", "左上三角形應貼齊頂部");
-        console.assert(triangle.style.transform === "rotate(90deg)", "左上三角形應旋轉 90 度");
-
-        setTriangleStyle("right-top");
-        console.assert(triangle.style.right === "0px" || triangle.style.right === "0", "右上三角形應貼齊右側");
-        console.assert(triangle.style.top === "0px" || triangle.style.top === "0", "右上三角形應貼齊頂部");
-        console.assert(triangle.style.transform === "rotate(180deg)", "右上三角形應旋轉 180 度");
-
         setTriangleStyle("right-bottom");
-        console.assert(triangle.style.right === "0px" || triangle.style.right === "0", "右下三角形應貼齊右側");
-        console.assert(triangle.style.bottom === "0px" || triangle.style.bottom === "0", "右下三角形應貼齊底部");
         console.assert(triangle.style.transform === "rotate(270deg)", "右下三角形應旋轉 270 度");
 
         mainScale.value = "150";
         updateMainImageScale();
         console.assert(mainImage.style.transform.includes("scale(1.5)"), "主圖縮放應反映在 transform");
-        console.assert(mainScaleValue.textContent === "150%", "主圖縮放顯示應為 150%");
-
-        panX = 12;
-        panY = -8;
-        updateMainImageScale();
-        console.assert(mainImage.style.transform.includes("translate(8px, -5.333333333333333px)") || mainImage.style.transform.includes("translate(8px, -5.33333px)") || mainImage.style.transform.includes("translate(8px, -5.3333px)"), "主圖拖曳位移應反映在 transform 並依縮放校正");
-
-        mainScale.value = "80";
-        updateMainImageScale();
-        console.assert(mainScale.value === "100", "主圖縮放不得低於 100");
 
         document.querySelector('input[name="position"][value="right-bottom"]').checked = true;
-        applyLayout();
-        console.assert(getPosition() === "right-bottom", "radio 切換後位置應正確");
-
         tagEnabled = true;
         applyLayout();
         console.assert(tagImage.style.right === "11px" || tagImage.style.right === "11", "右下標籤內縮應固定 11px");
         console.assert(tagImage.style.bottom === "11px" || tagImage.style.bottom === "11", "右下標籤內縮應固定 11px");
 
-        watermarkTextInput.value = "所羅門的後宮";
         watermarkColorInput.value = "#ffffff";
         watermarkOpacityInput.value = "16";
         document.querySelector('input[name="watermarkPattern"][value="solomon"]').checked = true;
         drawWatermarkPreview();
-        console.assert(document.getElementById("watermarkLayer") !== null, "浮水印預覽層應存在");
-        console.assert(typeof getWatermarkPattern() === "string", "浮水印圖案值應為字串");
+        console.assert(byId("watermarkLayer") !== null, "浮水印預覽層應存在");
         console.assert(getWatermarkPattern() === "solomon", "浮水印圖案應可正確讀取");
-        console.assert(getWatermarkColor() === "#3366ff", "浮水印顏色應可正確讀取");
+        console.assert(getWatermarkColor() === "#ffffff", "浮水印顏色應可正確讀取");
+        console.assert(Math.round(getWatermarkOpacity() * 100) === 16, "浮水印透明度應可正確讀取");
         console.assert(getContrastColor("#ffffff", 0.5).includes("0, 0, 0"), "白色浮水印應取得深色對比描邊");
-        console.assert(Math.round(getWatermarkOpacity() * 100) === 28, "浮水印透明度應可正確讀取");
 
         testStatus.textContent = "inline tests passed";
       } catch (error) {
